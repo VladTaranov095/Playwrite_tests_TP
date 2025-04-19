@@ -14,3 +14,10 @@ test('Checking first element for activity and previos for unctivity.', async ({p
     await newPlaywrightTests.searchingWord_in_SearchBox('Click');
     await newPlaywrightTests.checkingElementsActivity();
 })
+
+test('Checking that navigation can be carried out by using keyboard.', async ({page}) => {
+    const newPlaywrightTests = new PlaywrightTests(page);
+    await newPlaywrightTests.goto();
+    await newPlaywrightTests.searchingWord_in_SearchBox('Click');
+    await newPlaywrightTests.checkingElementsActivityByUsingArrow();
+})

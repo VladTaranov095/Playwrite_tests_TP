@@ -30,7 +30,7 @@ async checkingSearchingElements() {
 }
 }
 async checkingElementsActivity() {
-    const optionElements = this.searchingElements;;
+    const optionElements = this.searchingElements;
     const count: number = await optionElements.count();
     for (let i: number = 0; i < count; i++) {
         const element: Locator = optionElements.nth(i);
@@ -42,6 +42,18 @@ async checkingElementsActivity() {
                 await expect(previousElement).toHaveAttribute('aria-selected', 'false');
               }        
         }
+    }
+}
+async checkingElementsActivityByUsingArrow() {
+    const optionElements = this.searchingElements;
+    const count: number = await optionElements.count();
+    for (let i: number = 0; i < count; i++) {
+        let element: Locator = optionElements.nth(i);
+        await expect(element).toHaveAttribute('aria-selected', 'true');
+        await this.page.keyboard.press('ArrowDown');
+        await expect(element).toHaveAttribute('aria-selected', 'false');
+        element = optionElements.nth(i + 1);
+        await expect(element).toHaveAttribute('aria-selected', 'true');
     }
 }
 }
